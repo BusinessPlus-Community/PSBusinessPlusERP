@@ -1,0 +1,58 @@
+name: "Bug report 🐛"
+description: Report errors or unexpected behavior
+labels: [Issue-Bug, Needs-Triage]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Please make sure to [search for existing issues](https://github.com/HPS401/bp-webforms/issues) before filing a new one!
+
+- type: input
+  attributes:
+    label: Visual Studio Code version
+    placeholder: "19.1.56.0"
+    description: |
+      You can copy the version number from the About dialog. Open the About dialog by opening the Help menu and choosing About from the end of the list.
+  validations:
+    required: false
+
+- type: input
+  attributes:
+    label: PowerShell Version
+    placeholder: "5.1.19041.3570"
+    description: |
+      Please run `$PSVersionTable` in a PowerShell or Terminal Window.
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Other Software
+    description: If you're reporting a bug about our interaction with other software, what software? What versions?
+    placeholder: |
+      Web Browser Name and Version (Ex. Microsoft Edge: 115.0.1901.203)
+      BusinessPlus Version (Ex. 23.5.5)
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    placeholder: Tell us the steps required to trigger your bug.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: If you want to include screenshots, paste them into the markdown editor below.
+    placeholder: What were you expecting?
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Actual Behavior
+    placeholder: What happened instead?
+  validations:
+    required: true

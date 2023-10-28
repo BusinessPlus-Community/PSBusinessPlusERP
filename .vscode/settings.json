@@ -1,0 +1,31 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "powershell.codeFormatting.preset": "OTBS",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "files.defaultLanguage": "powershell",
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "powershell.integratedConsole.focusConsoleOnExecute": false,
+  "window.zoomLevel": 0,
+  "editor.mouseWheelZoom": true,
+  "powershell.enableProfileLoading": true,
+  "powershell.integratedConsole.showOnStartup": false,
+  "terminal.integrated.fontFamily": "Consolas",
+  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.lineHeight": 1,
+  "files.associations": { "*.ps1": "powershell" },
+  "powershell.scriptAnalysis.settingsPath": "ScriptAnalyzerSettings.psd1",
+  "editor.formatOnSave": true,
+  "terminal.integrated.profiles.windows": {
+    "PowerShell_7": {
+      "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "icon": "terminal-powershell"
+    } // ...
+  },
+  // Make the profile defined above the default profile.
+  "terminal.integrated.defaultProfile.windows": "PowerShell_7"
+}

@@ -48,7 +48,7 @@ PS> Uninstall-Module -Name PSBusinessPlusERP
 
 Interested in contributing? Read how you can [Contribute](contributing.md) to PSBusinessPlusERP
 
-This project maintains a [Code of Conduct](code-of-conduct.md) that establishes how the project is governed and how everyone involved is expected to behave. You can report unacceptable behavior to [abuse@businesspluscommunity.org](mailto:abuse@businesspluscommunity.org).
+This project maintains a [Code of Conduct](code-of-conduct.md) that establishes how the project is governed and how everyone involved is expected to behave. You can report unacceptable behavior to [abuse@bpluscommunity.org](mailto:abuse@bpluscommunity.org).
 
 ## Release History
 

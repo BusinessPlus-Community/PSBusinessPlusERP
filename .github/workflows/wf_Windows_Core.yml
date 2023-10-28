@@ -20,6 +20,9 @@ jobs:
       - name: Version Display
         shell: pwsh
         run: $PSVersionTable
+      - name: Local Directory
+        shell: pwsh
+        run: ls
       - name: Bootstrap
         shell: pwsh
         run: ./requirements.ps1.ps1

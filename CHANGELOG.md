@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [0.1.0] - 2023-10-15
+## [0.1.0] - 2023-10-27
 
-- Initial Script Deployment
+### Added
+
+- Get-HelloWorld Function
+
+## [0.1.1] - 2023-10-27
+
+### Fixed
+
+- Fix copyright message

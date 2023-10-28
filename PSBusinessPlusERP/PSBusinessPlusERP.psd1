@@ -12,7 +12,7 @@
     RootModule        = 'PSBusinessPlusERP.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.1.0'
+    ModuleVersion     = '0.1.1'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -105,6 +105,9 @@
 
             # A URL to an icon representing this module.
             # IconUri = ''
+
+            # ReleaseNote of this module
+            # ReleaseNote = 'Update Module Info'
 
             # ReleaseNotes of this module
             # ReleaseNotes = ''

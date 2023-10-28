@@ -1,6 +1,6 @@
 # PSBusinessPlusERP
 
-![Build Status](https://build.status.url.here)
+![Build Status](https://github.com/BusinessPlus-Community/PSBusinessPlusERP/actions/workflows/CI.yml/badge.svg)
 
 ## Description
 

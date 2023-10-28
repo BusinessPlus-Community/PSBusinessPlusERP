@@ -6,7 +6,7 @@
 
 PowerSchool BusinessPlus ERP cmdlets
 
-Authored by Justin Stanberry
+Authored by [Zach Birge](https://github.com/zbirge)
 
 ## Installing
 

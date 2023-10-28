@@ -27,7 +27,7 @@
     CompanyName       = 'BusinessPlus Community'
 
     # Copyright statement for this module
-    Copyright         = '(c) 2023 Zach Birge. All rights reserved.'
+    Copyright         = '(c) 2023 BusinessPlus Community. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description       = 'BusinessPlus Community PowerShell Module for BusinessPlus'
@@ -95,13 +95,13 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            # Tags = @()
+            # Tags = @("BusinessPlus","ERP")
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            # LicenseUri = 'https://github.com/BusinessPlus-Community/PSBusinessPlusERP/blob/112af02c62afd627759a9fa21c3eaf669ff81d5a/LICENSE.md'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            # ProjectUri = 'https://github.com/BusinessPlus-Community/PSBusinessPlusERP'
 
             # A URL to an icon representing this module.
             # IconUri = ''

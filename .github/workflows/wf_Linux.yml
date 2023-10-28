@@ -26,7 +26,7 @@ jobs:
         run: ls
       - name: Bootstrap
         shell: pwsh
-        run: ./requirements.ps1.ps1
+        run: ./build -Bootstrap
       - name: Test and Build
         shell: pwsh
         run: Invoke-Build -File .\src\PSBusinessPlusERP.build.ps1

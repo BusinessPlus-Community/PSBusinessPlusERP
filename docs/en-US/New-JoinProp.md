@@ -1,11 +1,11 @@
 ---
-external help file: PSBusinessPlusERP-help.xml
-Module Name: PSBusinessPlusERP
+external help file: BPC.Admin-help.xml
+Module Name: BPC.Admin
 online version:
 schema: 2.0.0
 ---
 
-# New-JoinProp
+# New-BPERPJoinProperty
 
 ## SYNOPSIS
 Returns New ReportFetch Join Prop String.
@@ -13,7 +13,7 @@ Returns New ReportFetch Join Prop String.
 ## SYNTAX
 
 ```
-New-JoinProp [-Bt20Name] <String> [-FromId] <String> [-ToId] <String> [-ProgressAction <ActionPreference>]
+New-BPERPJoinProperty [-Bt20Name] <String> [-FromId] <String> [-ToId] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
@@ -24,7 +24,7 @@ Returns New ReportFetch Join Prop String based on the provided parameters.
 
 ### EXAMPLE 1
 ```
-New-JoinProp -Bt20Name "BT20.HrEmpPay" -FromId "Id" -ToId "Id"
+New-BPERPJoinProperty -Bt20Name "BT20.HrEmpPay" -FromId "Id" -ToId "Id"
 ```
 
 ## PARAMETERS

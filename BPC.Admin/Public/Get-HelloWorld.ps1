@@ -1,12 +1,12 @@
 
-Function Get-HelloWorld {
+Function Get-BPERPExample {
     <#
     .SYNOPSIS
         Returns Hello world
     .DESCRIPTION
         Returns Hello world
     .EXAMPLE
-        PS> Get-HelloWorld
+        PS> Get-BPERPExample
 
         Runs the command
     #>
@@ -15,7 +15,7 @@ Function Get-HelloWorld {
     param (
         # Parameter description can go here or above in format: .PARAMETER  <Parameter-Name>
         [Parameter()]
-        [string]$Value = 'GetHelloWorld'
+        [string]$Value = 'GetBPERPExample'
     )
 
     $Value

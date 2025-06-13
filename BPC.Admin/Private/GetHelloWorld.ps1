@@ -1,0 +1,3 @@
+function GetBPERPExample {
+    'Hello world'
+}

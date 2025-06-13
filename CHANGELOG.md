@@ -23,4 +23,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Get-HelloWorld Function
+- Get-BPERPExample Function

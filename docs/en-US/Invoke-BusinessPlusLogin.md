@@ -1,46 +1,60 @@
 ---
-external help file: PSBusinessPlusERP-help.xml
-Module Name: PSBusinessPlusERP
+external help file: BPC.Admin-help.xml
+Module Name: BPC.Admin
 online version:
 schema: 2.0.0
 ---
 
-# Get-HelloWorld
+# Invoke-BPERPLogin
 
 ## SYNOPSIS
-Returns Hello world
+Short description
 
 ## SYNTAX
 
 ```
-Get-HelloWorld [[-Value] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Invoke-BPERPLogin [-BusinessPlusUrl] <String> [-UserCredential] <PSCredential>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Returns Hello world
+Long description
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-HelloWorld
+An example
 ```
-
-Runs the command
 
 ## PARAMETERS
 
-### -Value
-Parameter description can go here or above in format: .PARAMETER  \<Parameter-Name\>
+### -BusinessPlusUrl
+{{ Fill BusinessPlusUrl Description }}
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
-Default value: GetHelloWorld
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UserCredential
+{{ Fill UserCredential Description }}
+
+```yaml
+Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -67,7 +81,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.String
+### System.Management.Automation.PSObject
 ## NOTES
+General notes
 
 ## RELATED LINKS

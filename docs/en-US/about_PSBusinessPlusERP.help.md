@@ -1,6 +1,6 @@
-# PSBusinessPlusERP
+# BPC.Admin
 
-## about_PSBusinessPlusERP
+## about_BPC.Admin
 
 ```
 ABOUT TOPIC NOTE:

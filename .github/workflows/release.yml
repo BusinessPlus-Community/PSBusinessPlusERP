@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install and cache PowerShell modules
+        uses: potatoqualitee/psmodulecache@v6.2
+        with:
+          modules-to-cache: Pester:5.7.1, PSScriptAnalyzer:1.22.0, PowerShellBuild:0.6.1, BuildHelpers:2.0.16, psake:4.9.0
+          shell: pwsh
+
+      - name: Run Tests
+        shell: pwsh
+        run: |
+          ./build.ps1 -Task Test -Bootstrap
+
+      - name: Build Module
+        shell: pwsh
+        run: |
+          ./build.ps1
+
+      - name: Create Module Archive
+        shell: pwsh
+        run: |
+          $modulePath = Get-ChildItem -Path ./Output -Directory | Select-Object -First 1
+          Compress-Archive -Path $modulePath.FullName -DestinationPath ./Output/BPC.Admin.zip -Force
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Output/BPC.Admin.zip
+          asset_name: BPC.Admin.zip
+          asset_content_type: application/zip
+
+      - name: Publish to PowerShell Gallery
+        shell: pwsh
+        env:
+          PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
+        run: |
+          $modulePath = Get-ChildItem -Path ./Output -Directory | Select-Object -First 1
+          Publish-Module -Path $modulePath.FullName -NuGetApiKey $env:PSGALLERY_API_KEY -Verbose

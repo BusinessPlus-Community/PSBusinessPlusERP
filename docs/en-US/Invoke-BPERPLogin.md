@@ -13,7 +13,7 @@ Short description
 ## SYNTAX
 
 ```
-Invoke-BPERPLogin [-BusinessPlusUrl] <String> [-UserCredential] <PSCredential>
+Invoke-BPERPLogin [-Credential] <PSCredential> [-Uri] <String> [-ReturnConnection]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -29,11 +29,11 @@ An example
 
 ## PARAMETERS
 
-### -BusinessPlusUrl
-{{ Fill BusinessPlusUrl Description }}
+### -Credential
+PSCredential object containing the username and password for authentication
 
 ```yaml
-Type: String
+Type: PSCredential
 Parameter Sets: (All)
 Aliases:
 
@@ -44,17 +44,33 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -UserCredential
-{{ Fill UserCredential Description }}
+### -Uri
+The base URL of the BusinessPlus ERP system (e.g., https://erp.company.com)
 
 ```yaml
-Type: PSCredential
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ReturnConnection
+If specified, returns the full connection object including headers and response.
+Otherwise, returns only the authentication response.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

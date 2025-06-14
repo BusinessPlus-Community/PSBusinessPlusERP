@@ -13,7 +13,7 @@ Returns Hello world
 ## SYNTAX
 
 ```
-Get-BPERPExample [[-Value] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Get-BPERPExample [[-Name] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,8 +30,8 @@ Runs the command
 
 ## PARAMETERS
 
-### -Value
-Parameter description can go here or above in format: .PARAMETER  \<Parameter-Name\>
+### -Name
+The name to include in the greeting. Defaults to 'User'.
 
 ```yaml
 Type: String
@@ -40,8 +40,8 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: GetBPERPExample
-Accept pipeline input: False
+Default value: User
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

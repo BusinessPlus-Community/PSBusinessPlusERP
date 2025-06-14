@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install and cache PowerShell modules
-        uses: potatoqualitee/psmodulecache@v6.2
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: Pester:5.7.1, PSScriptAnalyzer:1.22.0, PowerShellBuild:0.6.1, BuildHelpers:2.0.16, psake:4.9.0
           shell: pwsh
@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install and cache PowerShell modules
-        uses: potatoqualitee/psmodulecache@v6.2
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: Pester:5.7.1, PSScriptAnalyzer:1.22.0, PowerShellBuild:0.6.1, BuildHelpers:2.0.16, psake:4.9.0
           shell: pwsh

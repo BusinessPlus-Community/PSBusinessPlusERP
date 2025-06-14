@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install and cache PowerShell modules
-        uses: potatoqualitee/psmodulecache@v6.2
+        uses: potatoqualitee/psmodulecache@v6.2.1
         with:
           modules-to-cache: Pester:5.7.1, PSScriptAnalyzer:1.22.0, PowerShellBuild:0.6.1, BuildHelpers:2.0.16, psake:4.9.0
           shell: pwsh
@@ -37,26 +37,14 @@ jobs:
           $modulePath = Get-ChildItem -Path ./Output -Directory | Select-Object -First 1
           Compress-Archive -Path $modulePath.FullName -DestinationPath ./Output/BPC.Admin.zip -Force
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Create Release and Upload Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Output/BPC.Admin.zip
-          asset_name: BPC.Admin.zip
-          asset_content_type: application/zip
+        run: |
+          gh release create ${{ github.ref_name }} \
+            --title "Release ${{ github.ref_name }}" \
+            --notes "Release ${{ github.ref_name }}" \
+            ./Output/BPC.Admin.zip
 
       - name: Publish to PowerShell Gallery
         shell: pwsh

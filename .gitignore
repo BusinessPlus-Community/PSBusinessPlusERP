@@ -4,3 +4,7 @@ Output/
 scratch/
 
 testResults.xml
+
+# Repository local files
+.claude/
+context/

@@ -1,6 +1,6 @@
 Function Invoke-BPERPLogin {
     [CmdletBinding()]
-    [OutputType([PSCustomObject])]
+    [OutputType([System.Object[]])]
     param (
         [Parameter(Mandatory)]
         [string]

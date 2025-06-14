@@ -23,7 +23,7 @@ $script:eNullComp = 'null'
 $script:eNotNullComp = 'notnull'
 
 # Export Global Variables
-Export-ModuleMember -Variable eEqualComp, eLikeComp, eNotLikeComp, eLTComp, eLTEComp, eGTComp, eGTEComp, eNotEqualComp, eINComp, eNullComp, eNotNullComp
+# Export-ModuleMember -Variable eEqualComp, eLikeComp, eNotLikeComp, eLTComp, eLTEComp, eGTComp, eGTEComp, eNotEqualComp, eINComp, eNullComp, eNotNullComp
 
 <#
 .SYNOPSIS
@@ -269,9 +269,7 @@ class ReportFetchOrderByParam {
     }
 
     [string]GetRequestXML() {
-        $out = "<DataProp Prop='$($this.propName)'"
-        if ($this.dir.Length -gt 0) { $out += " Dir='$($this.dir)'" }
-        $out += "/>"
+        $out = "<DataProp Prop='$($this.propName)' Dir='$($this.dir)'/>"
         return $out
     }
 }
@@ -502,7 +500,8 @@ class ReportFetch {
             $sRequestXML += "</NetSightMessage></sbixml>"
         }
 
-        $oSendDoc = [xml](New-Object System.Xml.XmlDocument).LoadXml($sRequestXML)
+        $oSendDoc = New-Object System.Xml.XmlDocument
+        $oSendDoc.LoadXml($sRequestXML)
         if ($oSendDoc.getElementsByTagName("parsererror").Count -gt 0) {
             $this.nStatus = 500
             $this.sStatusText = $oSendDoc.getElementsByTagName("parsererror")[0].innerText
@@ -549,4 +548,4 @@ class ReportFetch {
 }
 
 # Export Classes
-Export-ModuleMember -Function ReportFetchJoinParam, ReportFetchJoinClause, ReportFetchProperty, ReportFetchWhereParam, ReportFetchWhereClause, ReportFetchWhereGroup, ReportFetchOrderByParam, ReportFetchOrderByClause, ReportFetchDataObject, ReportFetch
+# Export-ModuleMember -Function ReportFetchJoinParam, ReportFetchJoinClause, ReportFetchProperty, ReportFetchWhereParam, ReportFetchWhereClause, ReportFetchWhereGroup, ReportFetchOrderByParam, ReportFetchOrderByClause, ReportFetchDataObject, ReportFetch

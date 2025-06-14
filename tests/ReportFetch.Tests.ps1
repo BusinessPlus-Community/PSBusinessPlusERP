@@ -1,7 +1,18 @@
 # PowerShell Unit Tests: ReportFetch.Tests.ps1
 
-# Import the module
-Import-Module -Name '.\BPC.Admin\Classes\ReportFetch\ReportFetch.ps1'
+BeforeAll {
+    # Import the classes directly for testing
+    $classPath = Join-Path $PSScriptRoot "..\BPC.Admin\Classes\ReportFetch\ReportFetch.ps1"
+    if (Test-Path $classPath) {
+        . $classPath
+    } else {
+        # If running from Output directory, try to load the built module
+        $modulePath = Get-ChildItem "$PSScriptRoot\..\Output\BPC.Admin\*\BPC.Admin.psd1" -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($modulePath) {
+            Import-Module $modulePath.FullName -Force
+        }
+    }
+}
 
 Describe 'ReportFetchJoinParam' {
     It 'Should create an instance with correct properties' {
@@ -61,7 +72,7 @@ Describe 'ReportFetchProperty' {
     }
 
     It 'Should generate correct XML without alias' {
-        $property = [ReportFetchProperty]::new('TestBT20', 'TestProp')
+        $property = [ReportFetchProperty]::new('TestBT20', 'TestProp', '')
         $property.GetRequestXML() | Should -Be "<Detail BT20OBJ='TestBT20' Prop='TestProp'/>"
     }
 
@@ -85,62 +96,63 @@ Describe 'ReportFetchWhereParam' {
     }
 
     It 'Should generate correct XML without comparison' {
-        $param = [ReportFetchWhereParam]::new('TestProp', 'TestValue')
+        $param = [ReportFetchWhereParam]::new('TestProp', 'TestValue', '')
         $param.GetRequestXML() | Should -Be "<WhereParam Prop='TestProp' Value='TestValue'/>"
     }
 
     It 'Should handle empty properties correctly' {
-        $param = [ReportFetchWhereParam]::new('', '')
+        $param = [ReportFetchWhereParam]::new('', '', '')
         $param.GetRequestXML() | Should -Be "<WhereParam Prop='' Value=''/>"
     }
 }
 
 Describe 'ReportFetchWhereClause' {
     It 'Should create an instance with an empty whereParams list' {
-        $clause = [ReportFetchWhereClause]::new()
+        $clause = [ReportFetchWhereClause]::new('')
         $clause.whereParams.Count | Should -Be 0
     }
 
     It 'Should add where parameters correctly' {
-        $clause = [ReportFetchWhereClause]::new()
+        $clause = [ReportFetchWhereClause]::new('')
         $clause.AddParam('TestProp', 'TestValue', 'TestComp')
         $clause.whereParams.Count | Should -Be 1
         $clause.whereParams[0].propName | Should -Be 'TestProp'
     }
 
     It 'Should generate correct XML with parameters' {
-        $clause = [ReportFetchWhereClause]::new()
+        $clause = [ReportFetchWhereClause]::new('')
         $clause.AddParam('TestProp', 'TestValue', 'TestComp')
         $clause.GetRequestXML() | Should -Be "<WhereClause><WhereParam Prop='TestProp' Value='TestValue' Comparison='TestComp'/></WhereClause>"
     }
 
     It 'Should handle no where parameters correctly' {
-        $clause = [ReportFetchWhereClause]::new()
+        $clause = [ReportFetchWhereClause]::new('')
         $clause.GetRequestXML() | Should -Be ""
     }
 }
 
 Describe 'ReportFetchWhereGroup' {
     It 'Should create an instance with an empty whereClauses list' {
-        $group = [ReportFetchWhereGroup]::new()
+        $group = [ReportFetchWhereGroup]::new('')
         $group.whereClauses.Count | Should -Be 0
     }
 
     It 'Should add where clauses correctly' {
-        $group = [ReportFetchWhereGroup]::new()
+        $group = [ReportFetchWhereGroup]::new('')
         $group.AddWhere('TestWhereOp')
         $group.whereClauses.Count | Should -Be 1
         $group.whereClauses[0].whereOp | Should -Be 'TestWhereOp'
     }
 
     It 'Should generate correct XML with where clauses' {
-        $group = [ReportFetchWhereGroup]::new()
-        $group.AddWhere('TestWhereOp')
-        $group.GetRequestXML() | Should -Be "<WhereClauseGroup WhereOp='testwhereop'><WhereClause WhereOp='testwhereop'></WhereClause></WhereClauseGroup>"
+        $group = [ReportFetchWhereGroup]::new('testwhereop')
+        $clause = $group.AddWhere('TestWhereOp')
+        $clause.AddParam('TestProp', 'TestValue', 'eq')
+        $group.GetRequestXML() | Should -Be "<WhereClauseGroup WhereOp='testwhereop'><WhereClause WhereOp='testwhereop'><WhereParam Prop='TestProp' Value='TestValue' Comparison='eq'/></WhereClause></WhereClauseGroup>"
     }
 
     It 'Should handle no where clauses correctly' {
-        $group = [ReportFetchWhereGroup]::new()
+        $group = [ReportFetchWhereGroup]::new('')
         $group.GetRequestXML() | Should -Be ""
     }
 }
@@ -158,8 +170,8 @@ Describe 'ReportFetchOrderByParam' {
     }
 
     It 'Should generate correct XML without direction' {
-        $param = [ReportFetchOrderByParam]::new('TestProp')
-        $param.GetRequestXML() | Should -Be "<DataProp Prop='TestProp'/>"
+        $param = [ReportFetchOrderByParam]::new('TestProp', '')
+        $param.GetRequestXML() | Should -Be "<DataProp Prop='TestProp' Dir=''/>"
     }
 
     It 'Should handle empty properties correctly' {
@@ -252,13 +264,13 @@ Describe 'ReportFetch' {
         $reportFetch = [ReportFetch]::new('TestUserID', 'TestConnect')
         $reportFetch.SetDistinct($true)
         $xmlDoc = $reportFetch.GetRequestXMLDocument($false)
-        $xmlDoc.OuterXml | Should -Match "<ReportFetch Distinct='1'>"
+        $xmlDoc.OuterXml | Should -Match '<ReportFetch Distinct="1">'
     }
 
     It 'Should handle apply security flag correctly' {
         $reportFetch = [ReportFetch]::new('TestUserID', 'TestConnect')
         $reportFetch.SetApplySecurity($true)
         $xmlDoc = $reportFetch.GetRequestXMLDocument($false)
-        $xmlDoc.OuterXml | Should -Match "<ReportFetch ApplySecurity='1'>"
+        $xmlDoc.OuterXml | Should -Match '<ReportFetch ApplySecurity="1">'
     }
 }

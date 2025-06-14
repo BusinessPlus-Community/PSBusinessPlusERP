@@ -22,16 +22,46 @@ All functions use the BPERP prefix:
 - `Invoke-BPERPLogin`
 - `Get-BPERPExample`
 - `New-BPERPJoinProperty`
-EOF
 
-# 10. Stage all changes
-git add -A
+## Migration Status
 
-# 11. Show status
-git status
+This module has been successfully migrated from `PSBusinessPlusERP` to `BPC.Admin`. The following changes have been completed:
 
-# 12. Commit (uncomment to run)
-# git commit -m "refactor: Rename to BPC.Admin namespace for consistency"
+### Renamed Files
+- `PSBusinessPlusERP.psd1` → `BPC.Admin.psd1`
+- `PSBusinessPlusERP.psm1` → `BPC.Admin.psm1`
+- `about_PSBusinessPlusERP.help.md` → `about_BPC.Admin.help.md`
+- `Invoke-BusinessPlusLogin.md` → `Invoke-BPERPLogin.md`
+- `New-JoinProp.md` → `New-BPERPJoinProperty.md`
 
-# 13. Push (uncomment to run)
-# git push origin v2
+### Other Changes
+- Removed old `Output/PSBusinessPlusERP/` directory containing legacy builds
+- Module manifest already contains correct BPC.Admin references and metadata
+- All function names follow the BPERP prefix convention
+
+### Repository Status
+- Repository has been renamed from `PSBusinessPlusERP` to `BPC.Admin` on GitHub
+- Current version: 0.2.0 (tagged as v0.2.0)
+
+### Related Modules
+The companion `BPC.DBRefresh` module has also been fully migrated to the BPC namespace. References to the old `PSBusinessPlusERP` name exist only in migration documentation and scripts designed to help users transition.
+
+## Build System
+
+This module uses PSake for build automation with the following key commands:
+- `./build.ps1` - Run the full build pipeline including tests and analysis
+- Build outputs are generated in `Output/BPC.Admin/{version}/`
+- Tests are located in the `tests/` directory using Pester 5.x
+
+## Current Functions
+
+### Exported Functions
+- `Get-BPERPExample` - Example/template function
+- `Invoke-BPERPLogin` - Authenticates users to BusinessPlus ERP system
+
+### Classes
+The module includes a sophisticated ReportFetch class system in `BPC.Admin/Classes/ReportFetch/` for building XML requests.
+
+## Known Issues
+- `New-BPERPJoinProperty` is documented but not yet implemented
+- Some ReportFetch test expectations need updating to match actual class constructors

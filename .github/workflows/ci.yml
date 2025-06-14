@@ -39,10 +39,18 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         shell: pwsh
         run: |
+          # Set up BuildHelpers environment variables
+          Import-Module BuildHelpers -Force
+          Set-BuildEnvironment -Force
+          
+          # Build the module first to ensure output directory exists
+          ./build.ps1 -Task Build -Bootstrap
+          
+          # Now run coverage on the built module
           $config = New-PesterConfiguration
           $config.Run.Path = './tests'
           $config.CodeCoverage.Enabled = $true
-          $config.CodeCoverage.Path = './BPC.Admin/Public', './BPC.Admin/Private'
+          $config.CodeCoverage.Path = './Output/BPC.Admin/*/BPC.Admin.psm1'
           $config.CodeCoverage.OutputFormat = 'CoverageGutters'
           $config.CodeCoverage.OutputPath = './coverage.xml'
           $config.CodeCoverage.CoveragePercentTarget = 80

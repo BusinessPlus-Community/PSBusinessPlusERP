@@ -60,7 +60,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/*.log": true,
-    "**/context": true,
     "**/.claude": true
   },
   
@@ -76,7 +75,7 @@
   },
   
   // Terminal settings
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.defaultProfile.windows": "WSL (Debian)",
   "terminal.integrated.defaultProfile.linux": "pwsh",
   "terminal.integrated.defaultProfile.osx": "pwsh",
   "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
@@ -93,6 +92,11 @@
         "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe"
       ],
       "icon": "terminal-powershell"
+    },
+    "WSL (Debian)": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": ["-d", "Debian"],
+      "icon": "terminal-linux"
     }
   },
   "terminal.integrated.profiles.linux": {

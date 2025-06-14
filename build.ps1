@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 [cmdletbinding(DefaultParameterSetName = 'Task')]
 param(
     # Build task(s) to execute

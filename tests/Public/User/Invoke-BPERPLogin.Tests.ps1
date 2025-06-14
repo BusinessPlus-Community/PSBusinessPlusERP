@@ -75,7 +75,10 @@ Describe 'Invoke-BPERPLogin' {
         }
 
         It 'Should throw when mandatory parameters are missing' {
-            { Invoke-BPERPLogin } | Should -Throw
+            # Use Get-Command to test parameter validation without executing
+            $command = Get-Command -Name Invoke-BPERPLogin -Module BPC.Admin
+            $command.Parameters['Credential'].Attributes.Mandatory | Should -Contain $true
+            $command.Parameters['Uri'].Attributes.Mandatory | Should -Contain $true
         }
 
         It 'Should not throw with valid parameters' {

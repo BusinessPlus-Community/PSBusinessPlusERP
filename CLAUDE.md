@@ -89,6 +89,7 @@ This module uses PSake for build automation with the following key commands:
 
 #### Database Functions (via dbatools)
 - `Test-BPERPDatabaseConnection` - Tests connectivity to BusinessPlus SQL Server databases (SQL Server 2016+)
+- `Invoke-BPERPQuery` - Executes parameterized queries against BusinessPlus databases with multiple output formats
 
 ### Classes
 The module includes a sophisticated ReportFetch class system in `BPC.Admin/Classes/ReportFetch/` for building XML requests. Classes include:

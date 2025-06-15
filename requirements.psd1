@@ -23,4 +23,7 @@
     'PSScriptAnalyzer' = @{
         Version = '1.19.1'
     }
+    'dbatools' = @{
+        Version = '2.1.1'
+    }
 }

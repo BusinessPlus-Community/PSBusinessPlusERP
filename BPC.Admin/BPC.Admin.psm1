@@ -10,4 +10,4 @@ foreach ($import in @($classes + $public + $private)) {
     }
 }
 
-Export-ModuleMember -Function 'Get-BPERPExample', 'Invoke-BPERPLogin'
+Export-ModuleMember -Function 'Invoke-BPERPLogin', 'Test-BPERPConnection', 'Test-BPERPDatabaseConnection'
